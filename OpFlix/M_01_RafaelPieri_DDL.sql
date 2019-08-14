@@ -41,3 +41,18 @@ CREATE TABLE Favoritos (
 	IdUsuario		INT FOREIGN KEY REFERENCES Usuarios (IdUsuario)
 	,IdLancamento	INT FOREIGN KEY REFERENCES Lancamentos (IdLancamento)
 );
+
+CREATE TABLE Veiculos (
+	IdVeiculo		INT PRIMARY KEY IDENTITY NOT NULL
+	,Veiculo		VARCHAR (255) UNIQUE NOT NULL
+);
+
+ALTER TABLE Lancamentos
+ADD IdVeiculos		INT FOREIGN KEY REFERENCES Veiculos (IdVeiculo);
+
+
+
+
+
+
+

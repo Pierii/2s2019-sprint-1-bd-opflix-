@@ -40,4 +40,40 @@ INSERT INTO Categorias (Categoria)
 			,('Documentário')
 			,('Ficção Científica');
 
-INSERT INTO Lancamentos
+INSERT INTO Lancamentos (IdCategoria, Titulo, Sinopse, TempoDuracao, IdTipo, DataLancamento)
+	VALUES	(4, 'Rei Leão', 'O Rei Leão, da Disney, dirigido por Jon Favreau, retrata uma jornada pela savana africana, onde nasce o futuro rei da Pedra do Reino, Simba. O pequeno leão que idolatra seu pai, o rei Mufasa, é fiel ao seu destino de assumir o reinado. Mas nem todos no reino pensam da mesma maneira. Scar, irmão de Mufasa e ex-herdeiro do trono, tem seus próprios planos. A batalha pela Pedra do Reino é repleta de traição, eventos trágicos e drama, o que acaba resultando no exílio de Simba. Com a ajuda de dois novos e inusitados amigos, Simba terá que crescer e voltar para recuperar o que é seu por direito.', 118, 1, '2019-07-18')
+			,(6, 'Deuses Americanos', 'Os seres bíblicos e mitológicos estão perdendo cada vez mais fiéis para novos deuses, que refletem o amor da sociedade por dinheiro, tecnologia, celebridades e drogas. Shadow Moon é um ex-vigarista que agora serve como segurança e companheiro de viagem para o Sr. Wednesday, um homem fraudulento que é, na verdade, um dos velhos deuses, e está na Terra em uma missão: reunir forças para lutar contra as novas entidades.', 60, 2, '2017-04-30')
+			,(6, 'La Casa de Papel 3 temp', 'Oito habilidosos ladrões se trancam na Casa da Moeda da Espanha com o ambicioso plano de realizar o maior roubo da história e levar com eles mais de 2 bilhões de euros. Para isso, a gangue precisa lidar com as dezenas de pessoas que manteve como refém, além dos agentes da força de elite da polícia, que farão de tudo para que a investida dos criminosos fracasse.', 45, 2, '2019-07-19');
+
+DELETE FROM Lancamentos 
+WHERE IdLancamento = 5;
+
+UPDATE Lancamentos
+SET Titulo = 'La Casa de Papel - 3º Temporada'
+WHERE IdLancamento = 6;
+
+UPDATE Lancamentos
+SET DataLancamento = '1994-07-08'
+WHERE IdLancamento = 4;
+
+UPDATE Usuarios
+SET IdPermissao = 1
+WHERE IdUsuario = 3;
+
+INSERT INTO Veiculos (Veiculo)
+	VALUES	('Cinema')
+			,('Netflix')
+			,('Amazon')
+			,('VHS');
+
+SELECT * FROM Veiculos
+
+SELECT * FROM Lancamentos ORDER BY IdLancamento ASC
+
+UPDATE Lancamentos
+SET IdVeiculos = 2
+WHERE IdLancamento = 6;
+
+UPDATE Lancamentos
+SET IdVeiculos = 4
+WHERE IdLancamento = 6;
