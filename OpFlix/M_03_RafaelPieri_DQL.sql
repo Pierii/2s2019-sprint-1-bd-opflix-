@@ -49,6 +49,14 @@ ON Veiculos.IdVeiculo = Categorias.IdCategoria;
 SELECT * FROM VeiculoCategoria;
 
 
+CREATE PROCEDURE QuantidadeCategoria
+@Quantidade VARCHAR(200)
+AS 
+SELECT COUNT(*)
+FROM Lancamentos
+WHERE IdCategoria = 1
+
+EXECUTE QuantidadeCategoria'1';
 
 
 
