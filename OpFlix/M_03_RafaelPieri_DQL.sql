@@ -12,22 +12,13 @@ SELECT * FROM Usuarios;
 
 SELECT Nome FROM Usuarios;
 
-SELECT * FROM Tipos;
+SELECT * FROM Formatos;
 
 CREATE PROCEDURE FilmesAcao
 AS
 SELECT * FROM Lancamentos WHERE IdCategoria = 1;
 
 EXEC FilmesAcao
-
-
-SELECT Usuarios.Nome, Favoritos.*, Lancamentos.Titulo
-FROM Usuarios
-JOIN Favoritos
-ON Usuarios.IdUsuario = Favoritos.IdUsuario
-JOIN Lancamentos
-ON Usuarios.IdUsuario = Lancamentos.IdLancamento;
-
 
 SELECT COUNT (Titulo)
 FROM Lancamentos;

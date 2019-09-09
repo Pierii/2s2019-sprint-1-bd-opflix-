@@ -2,9 +2,9 @@ CREATE DATABASE M_OpFlix;
 
 USE M_OpFlix;
 
-CREATE TABLE Tipos (
-	IdTipo			TINYINT PRIMARY KEY IDENTITY NOT NULL
-	,Tipo			VARCHAR (255) NOT NULL UNIQUE
+CREATE TABLE Formatos (
+	IdFormato			TINYINT PRIMARY KEY IDENTITY NOT NULL
+	,Formato			VARCHAR (255) NOT NULL UNIQUE
 );
 
 CREATE TABLE Categorias (
@@ -18,13 +18,9 @@ CREATE TABLE Lancamentos (
 	,Titulo			VARCHAR (255) UNIQUE NOT NULL
 	,Sinopse		TEXT NOT NULL
 	,TempoDuracao	INT	NOT NULL
-	,IdTipo			TINYINT	FOREIGN KEY REFERENCES Tipos (IdTipo)
+	,IdFormato		TINYINT	FOREIGN KEY REFERENCES Formatos (IdFormato)
+	,IdVeiculos		INT FOREIGN KEY REFERENCES Veiculos (IdVeiculo)
 	,DataLancamento	DATE NOT NULL
-);
-
-CREATE TABLE Permissoes (
-	IdPermissao		TINYINT PRIMARY KEY IDENTITY NOT NULL
-	,Permissao		VARCHAR (255)
 );
 
 CREATE TABLE Usuarios (
@@ -33,25 +29,14 @@ CREATE TABLE Usuarios (
 	,Email			VARCHAR (255) UNIQUE NOT NULL
 	,Senha			VARCHAR (255) NOT NULL
 	,CPF			BIGINT	UNIQUE NOT NULL
-	,IdPermissao	TINYINT	FOREIGN KEY REFERENCES Permissoes (IdPermissao)
 	,DataEntrada	DATETIME NOT NULL DEFAULT GETDATE()
-);
-
-CREATE TABLE Favoritos (
-	IdUsuario		INT FOREIGN KEY REFERENCES Usuarios (IdUsuario)
-	,IdLancamento	INT FOREIGN KEY REFERENCES Lancamentos (IdLancamento)
+	,Permissao		VARCHAR (255) NOT NULL
 );
 
 CREATE TABLE Veiculos (
 	IdVeiculo		INT PRIMARY KEY IDENTITY NOT NULL
 	,Veiculo		VARCHAR (255) UNIQUE NOT NULL
 );
-
-ALTER TABLE Lancamentos
-ADD IdVeiculos		INT FOREIGN KEY REFERENCES Veiculos (IdVeiculo);
-
-
-
 
 
 
