@@ -6,15 +6,14 @@ using System.Threading.Tasks;
 
 namespace Senai.OpFlix.WebApi.Interfaces
 {
-    interface ICategoriaRepository
+    interface IVeiculoRepository
     {
-        List<Categorias> Listar();
+        List<Veiculos> Listar();
 
-        Categorias BuscarPorId(int id);
+        Veiculos BuscarPorId(int id);
 
-        void Cadastrar(Categorias pecas);
+        void Cadastrar(Veiculos veiculos);
 
-        void Atualizar(Categorias pecas);
-
+        void Atualizar(Veiculos veiculos);
     }
 }

@@ -60,8 +60,8 @@ SELECT * FROM Lancamentos ORDER BY IdLancamento ASC
 
 UPDATE Lancamentos
 SET IdVeiculos = 4
-WHERE IdLancamento = 5;
+WHERE IdLancamento = 4;
 
 UPDATE Lancamentos
-SET IdVeiculos = 4
+SET IdVeiculos = 2
 WHERE IdLancamento = 6;

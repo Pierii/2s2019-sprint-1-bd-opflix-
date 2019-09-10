@@ -13,30 +13,29 @@ namespace Senai.OpFlix.WebApi.Controllers
     [Route("api/[controller]")]
     [Produces("application/json")]
     [ApiController]
-
-    public class CategoriasController : ControllerBase
+    public class VeiculosController : ControllerBase
     {
-        private ICategoriaRepository CategoriaRepository { get; set; }
+        private IVeiculoRepository VeiculoRepository { get; set; }
 
-        public CategoriasController()
+        public VeiculosController()
         {
-            CategoriaRepository = new CategoriaRepository();
+            VeiculoRepository = new VeiculoRepository();
         }
 
         [HttpGet]
         public IActionResult Listar()
         {
             {
-                return Ok(CategoriaRepository.Listar());
+                return Ok(VeiculoRepository.Listar());
             }
         }
 
         [HttpPost]
-        public IActionResult Cadastrar(Categorias categoria)
+        public IActionResult Cadastrar(Veiculos veiculo)
         {
             try
             {
-                CategoriaRepository.Cadastrar(categoria);
+                VeiculoRepository.Cadastrar(veiculo);
                 return Ok();
             }
             catch (Exception ex)
@@ -48,20 +47,19 @@ namespace Senai.OpFlix.WebApi.Controllers
         [HttpGet("{id}")]
         public IActionResult BuscarPorId(int id)
         {
-            Categorias Categoria = CategoriaRepository.BuscarPorId(id);
-            if (Categoria == null)
+            Veiculos Veiculo = VeiculoRepository.BuscarPorId(id);
+            if (Veiculo == null)
                 return NotFound();
-            return Ok(Categoria);
+            return Ok(Veiculo);
         }
 
         [HttpPut("{id}")]
-        public IActionResult Atualizar(Categorias Categoria, int id)
+        public IActionResult Atualizar(Veiculos Veiculo, int id)
         {
-            Categoria.IdCategoria = id;
-            CategoriaRepository.Atualizar(Categoria);
+            Veiculo.IdVeiculo = id;
+            VeiculoRepository.Atualizar(Veiculo);
             return Ok();
-            
+
         }
     }
-
 }
