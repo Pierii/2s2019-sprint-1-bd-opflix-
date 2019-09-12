@@ -54,7 +54,7 @@ INSERT INTO Veiculos (Veiculo)
 			,('Amazon')
 			,('VHS');
 
-SELECT * FROM Veiculos
+SELECT * FROM Usuarios
 
 SELECT * FROM Lancamentos ORDER BY IdLancamento ASC
 

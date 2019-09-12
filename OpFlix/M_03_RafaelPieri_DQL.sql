@@ -49,6 +49,8 @@ WHERE IdCategoria = 1
 
 EXECUTE QuantidadeCategoria'1';
 
-
+UPDATE Usuarios
+SET Email = 'rob@email.com'
+WHERE IdUsuario = 4
 
 
