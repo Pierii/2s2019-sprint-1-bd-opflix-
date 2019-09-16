@@ -3,6 +3,7 @@ using Senai.OpFlix.WebApi.Interfaces;
 using Senai.OpFlix.WebApi.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -10,6 +11,8 @@ namespace Senai.OpFlix.WebApi.Repositories
 {
     public class UsuarioRepository : IUsuarioRepository
     {
+        private string StringConexao = "Data Source=.\\SqlExpress; initial catalog=M_OpFlix;User Id=sa;Pwd=132;";
+
         public Usuarios BuscarPorEmailESenha(LoginViewModel login)
         {
             using (OpFlixContext ctx = new OpFlixContext())
@@ -32,11 +35,18 @@ namespace Senai.OpFlix.WebApi.Repositories
 
         public void Cadastrar(Usuarios usuario)
         {
-            using (OpFlixContext ctx = new OpFlixContext())
+            string Query = "INSERT INTO Usuarios(Nome, Email, Senha, CPF) VALUES (@Nome, @Email, @Senha, @CPF)";
+            using (SqlConnection con = new SqlConnection(StringConexao))
             {
-                ctx.Usuarios.Add(usuario);
-                ctx.SaveChanges(); 
+                SqlCommand cmd = new SqlCommand(Query, con);
+                cmd.Parameters.AddWithValue("@Nome", usuario.Nome);
+                cmd.Parameters.AddWithValue("@Email", usuario.Email);
+                cmd.Parameters.AddWithValue("@Senha", usuario.Senha);
+                cmd.Parameters.AddWithValue("@CPF", usuario.Cpf);
+                con.Open();
+                cmd.ExecuteNonQuery();
             }
         }
     }
 }
+

@@ -46,7 +46,7 @@ WHERE IdLancamento = 4;
 
 UPDATE Usuarios
 SET Permissao = 'ADMINISTRADOR'
-WHERE IdUsuario = 3;
+WHERE IdUsuario = 28;
 
 INSERT INTO Veiculos (Veiculo)
 	VALUES	('Cinema')
@@ -65,3 +65,4 @@ WHERE IdLancamento = 4;
 UPDATE Lancamentos
 SET IdVeiculos = 2
 WHERE IdLancamento = 6;
+

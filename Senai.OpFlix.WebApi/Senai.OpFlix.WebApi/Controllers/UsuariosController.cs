@@ -14,11 +14,11 @@ namespace Senai.OpFlix.WebApi.Controllers
     [Route("api/[controller]")]
     [Produces("application/json")]
     [ApiController]
-    public class UsuarioController : ControllerBase
+    public class UsuariosController : ControllerBase
     {
         private IUsuarioRepository UsuarioRepository { get; set; }
 
-        public UsuarioController()
+        public UsuariosController()
         {
             UsuarioRepository = new UsuarioRepository();
         }
@@ -29,7 +29,7 @@ namespace Senai.OpFlix.WebApi.Controllers
         {
             try
             {
-                UsuarioRepository.CadastrarAdmin(usuario);
+                UsuarioRepository.Cadastrar(usuario);
                 return Ok();
             }
             catch (Exception ex)
@@ -41,15 +41,8 @@ namespace Senai.OpFlix.WebApi.Controllers
         [HttpPost]
         public IActionResult Cadastrar(Usuarios usuario)
         {
-            try
-            {
-                UsuarioRepository.CadastrarAdmin(usuario);
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new { mensagem = "Ocorreu algum erro :(" + ex.Message });
-            }
+            UsuarioRepository.Cadastrar(usuario);
+            return Ok();
         }
     }
 }
