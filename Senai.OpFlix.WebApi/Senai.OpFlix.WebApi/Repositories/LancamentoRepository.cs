@@ -11,6 +11,10 @@ namespace Senai.OpFlix.WebApi.Repositories
     {
         public List<Lancamentos> Listar()
         {
+            /// <summary>
+            /// Listas todos os lançamentos
+            /// </summary>
+            /// <returns>Lista de lançamentos</returns>
             using (OpFlixContext ctx = new OpFlixContext())
             {
                 return ctx.Lancamentos.ToList();
@@ -26,6 +30,10 @@ namespace Senai.OpFlix.WebApi.Repositories
             }
         }
 
+        /// <summary>
+        /// Atualiza um lançamento
+        /// </summary>
+        /// <param name="lancamento"></param>
         public void Atualizar(Lancamentos lancamento)
         {
             using (OpFlixContext ctx = new OpFlixContext())
@@ -44,6 +52,11 @@ namespace Senai.OpFlix.WebApi.Repositories
             }
         }
 
+        /// <summary>
+        /// Busca um Lançamento através do ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Lançamento Buscado</returns>
         public Lancamentos BuscarPorId(int id)
         {
             using (OpFlixContext ctx = new OpFlixContext())
@@ -51,7 +64,10 @@ namespace Senai.OpFlix.WebApi.Repositories
                 return ctx.Lancamentos.FirstOrDefault(x => x.IdLancamento == id);
             }
         }
-
+        /// <summary>
+        /// Exclui um lançamento pelo seu ID
+        /// </summary>
+        /// <param name="id"></param>
         public void Deletar(int id)
         {
             using (OpFlixContext ctx = new OpFlixContext())

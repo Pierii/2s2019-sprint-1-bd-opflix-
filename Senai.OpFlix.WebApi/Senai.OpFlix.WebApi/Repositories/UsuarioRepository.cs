@@ -13,6 +13,11 @@ namespace Senai.OpFlix.WebApi.Repositories
     {
         private string StringConexao = "Data Source=.\\SqlExpress; initial catalog=M_OpFlix;User Id=sa;Pwd=132;";
 
+        /// <summary>
+        /// Busca uma Usuário através do Email e Senha
+        /// </summary>
+        /// <param name="login"></param>
+        /// <returns>Categoria Buscada</returns>
         public Usuarios BuscarPorEmailESenha(LoginViewModel login)
         {
             using (OpFlixContext ctx = new OpFlixContext())
@@ -23,7 +28,10 @@ namespace Senai.OpFlix.WebApi.Repositories
                 return UsuarioBuscado;
             }
         }
-
+        /// <summary>
+        /// Cadastra um usuário comum ou administrador
+        /// </summary>
+        /// <param name="usuario"></param>
         public void CadastrarAdmin(Usuarios usuario)
         {
             using (OpFlixContext ctx = new OpFlixContext())
@@ -33,6 +41,10 @@ namespace Senai.OpFlix.WebApi.Repositories
             }
         }
 
+        /// <summary>
+        /// Cadastra um usuário comum
+        /// </summary>
+        /// <param name="usuario"></param>
         public void Cadastrar(Usuarios usuario)
         {
             string Query = "INSERT INTO Usuarios(Nome, Email, Senha, CPF) VALUES (@Nome, @Email, @Senha, @CPF)";

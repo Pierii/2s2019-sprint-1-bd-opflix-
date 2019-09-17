@@ -9,6 +9,10 @@ namespace Senai.OpFlix.WebApi.Repositories
 {
     public class VeiculoRepository : IVeiculoRepository
     {
+        /// <summary>
+        /// Listas todos os veículos
+        /// </summary>
+        /// <returns>Lista de veículos</returns>
         public List<Veiculos> Listar()
         {
             using (OpFlixContext ctx = new OpFlixContext())
@@ -17,6 +21,10 @@ namespace Senai.OpFlix.WebApi.Repositories
             }
         }
 
+        /// <summary>
+        /// Cadastra um veículo
+        /// </summary>
+        /// <param name="veiculo"></param>
         public void Cadastrar(Veiculos veiculo)
         {
             using (OpFlixContext ctx = new OpFlixContext())
@@ -26,6 +34,10 @@ namespace Senai.OpFlix.WebApi.Repositories
             }
         }
 
+        /// <summary>
+        /// Atualiza um veículo
+        /// </summary>
+        /// <param name="veiculo"></param>
         public void Atualizar(Veiculos veiculo)
         {
             using (OpFlixContext ctx = new OpFlixContext())
@@ -37,6 +49,11 @@ namespace Senai.OpFlix.WebApi.Repositories
             }
         }
 
+        /// <summary>
+        /// Busca um Veículo através do ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Veículo Buscada</returns>
         public Veiculos BuscarPorId(int id)
         {
             using (OpFlixContext ctx = new OpFlixContext())
