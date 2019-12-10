@@ -1,4 +1,5 @@
-﻿using Senai.OpFlix.WebApi.Domains;
+﻿using Microsoft.EntityFrameworkCore;
+using Senai.OpFlix.WebApi.Domains;
 using Senai.OpFlix.WebApi.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,7 @@ namespace Senai.OpFlix.WebApi.Repositories
             /// <returns>Lista de lançamentos</returns>
             using (OpFlixContext ctx = new OpFlixContext())
             {
-                return ctx.Lancamentos.ToList();
+                return ctx.Lancamentos.Include(x => x.IdCategoriaNavigation).Include(x => x.IdFormatoNavigation).Include(x => x.IdVeiculosNavigation).ToList();
             }
         }
 
@@ -38,7 +39,7 @@ namespace Senai.OpFlix.WebApi.Repositories
         {
             using (OpFlixContext ctx = new OpFlixContext())
             {
-                Lancamentos lancamentoBuscado = ctx.Lancamentos.FirstOrDefault(x => x.IdLancamento == lancamento.IdLancamento);
+                Lancamentos lancamentoBuscado = ctx.Lancamentos.FirstOrDefault(x => x.IdLancamento == lancamento.IdLancamento); 
                 lancamentoBuscado.IdCategoria = lancamento.IdCategoria;
                 lancamentoBuscado.Titulo = lancamento.Titulo;
                 lancamentoBuscado.Sinopse = lancamento.Sinopse;
@@ -75,6 +76,22 @@ namespace Senai.OpFlix.WebApi.Repositories
                 Lancamentos LancamentoBuscado = ctx.Lancamentos.Find(id);
                 ctx.Lancamentos.Remove(LancamentoBuscado);
                 ctx.SaveChanges();
+            }
+        }
+
+        public List<Lancamentos> BuscarPorCategoria(int categoria)
+        {
+            using (OpFlixContext ctx = new OpFlixContext())
+            {
+                return ctx.Lancamentos.Where(x => x.IdCategoria == categoria).Include(x => x.IdCategoriaNavigation).Include(x => x.IdVeiculosNavigation ).Include(x => x.IdFormatoNavigation).ToList();
+            }
+        }
+
+        public List<Lancamentos> BuscarPorData(DateTime data)
+        {
+            using (OpFlixContext ctx = new OpFlixContext())
+            {
+                return ctx.Lancamentos.Where(x => x.DataLancamento == data).Include(x => x.IdCategoriaNavigation).Include(x => x.IdVeiculosNavigation).Include(x => x.IdFormatoNavigation).ToList();
             }
         }
     }

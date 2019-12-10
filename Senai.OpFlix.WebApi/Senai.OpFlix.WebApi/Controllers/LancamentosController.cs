@@ -74,5 +74,19 @@ namespace Senai.OpFlix.WebApi.Controllers
             LancamentoRepository.Deletar(id);
             return Ok();    
         }
+
+        [Authorize]
+        [HttpGet("listar/categoria/{categoria}")]
+        public IActionResult ListarPorPlataforma(int categoria)
+        {
+            return Ok(LancamentoRepository.BuscarPorCategoria(categoria));
+        }
+
+        [Authorize]
+        [HttpGet("filtroData/{data}")]
+        public IActionResult FiltrarData(DateTime data)
+        {
+            return Ok(LancamentoRepository.BuscarPorData(data));
+        }
     }
 }
